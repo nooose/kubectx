@@ -44,7 +44,7 @@ do
     context_number=${kubectx%,*}
     context_name=${kubectx#*,}
 
-    if [ $context_number -eq $INPUT_CTX_NUMBER ] && [ $context_name != $CONTEXT_HOLDER ]; then
+    if [ $context_number -eq $INPUT_CTX_NUMBER ] && [ "$context_name" != "$CONTEXT_HOLDER" ]; then
         kubectl config use-context $context_name
         exit 0
     fi
