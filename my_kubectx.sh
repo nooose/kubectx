@@ -3,7 +3,7 @@
 CONTEXT_HOLDER=`kubectl config get-contexts \
                                         | grep '*' \
                                         | awk '{print $2}'`
-LINE_NUMBER_OF_KUBE_CONTEXTS=`kubectl config get-contexts | wc -l`-1
+LINE_NUMBER_OF_KUBE_CONTEXTS=`kubectl config get-contexts | wc -l`
 NUMBER_OF_KUBE_CONTEXTS=$((LINE_NUMBER_OF_KUBE_CONTEXTS - 1))
 
 
