@@ -12,9 +12,9 @@ kubectl config get-contexts \
     | awk -v context="$CONTEXT_HOLDER" \
     '{if ($1 == context) {
         print "\033[34m[" NR "] " $1 "\033[0m"
-                                                        } else {
-                                                                print "[" NR "] " $1
-                                                        }}'
+    } else {
+        print "[" NR "] " $1
+    }}'
 
 read -p "Select context > " INPUT_CTX_NUMBER
 
