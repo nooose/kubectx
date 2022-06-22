@@ -3,6 +3,9 @@
 CONTEXT_HOLDER=`kubectl config get-contexts \
                                         | grep '*' \
                                         | awk '{print $2}'`
+LINE_NUMBER_OF_KUBE_CONTEXTS=`kubectl config get-contexts | wc -l`-1
+NUMBER_OF_KUBE_CONTEXTS=$((LINE_NUMBER_OF_KUBE_CONTEXTS - 1))
+
 
 kubectl config get-contexts \
                                 | awk '{if (NR > 1) print $2}' \
@@ -15,9 +18,22 @@ kubectl config get-contexts \
 
 read -p "Select context > " INPUT_CTX_NUMBER
 
+re='^[0-9]+$'
+if ! [[ $INPUT_CTX_NUMBER =~ $re ]]; then
+         echo "error: Not a number" >&2
+         exit 1
+fi
+
+if [ $INPUT_CTX_NUMBER -lt 0 ] || [ $INPUT_CTX_NUMBER -gt $NUMBER_OF_KUBE_CONTEXTS ]; then
+	echo "error: Input valid number" >&2
+	exit 1
+fi
+
+
 if [ $INPUT_CTX_NUMBER -eq 0 ]; then
         exit 0
 fi
+
 
 for kubectx in `kubectl config get-contexts | awk '{if (NR > 1) print NR - 1 "," $2}'`
 do
