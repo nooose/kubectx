@@ -4,7 +4,7 @@
 - kubectl
 
 # Usage
-![캡처](1.png)
+![pic](1.png)
 
 
 ```bash
@@ -12,3 +12,5 @@
 echo "alias kubectx=~/$SCRIPT_PATH" >> ~/.zshrc
 source ~/.zshrc
 ```
+
+![pic](2.png)
