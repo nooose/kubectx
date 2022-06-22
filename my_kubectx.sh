@@ -18,6 +18,10 @@ kubectl config get-contexts \
 
 read -p "Select context > " INPUT_CTX_NUMBER
 
+if [ -z "$INPUT_CTX_NUMBER" ]; then
+    exit 0
+fi
+
 re='^[0-9]+$'
 if ! [[ $INPUT_CTX_NUMBER =~ $re ]]; then
          echo "error: Not a number" >&2
